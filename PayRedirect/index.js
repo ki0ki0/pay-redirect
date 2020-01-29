@@ -4,12 +4,12 @@ module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
        
     if (req.query.account && req.query.amount) {
-        var liqpay = new LiqPay("sandbox_i76493038487", "sandbox_tvA0pMWRoa3Nx17CDqIBMPdVF5eriJ1Vc0IfhCxy");
+        var liqpay = new LiqPay(process.env["liqpay_public_key"], process.env["liqpay_private_key"]);
         const params = {
             'action': 'pay',
             'amount': req.query.amount,
             'currency': 'UAH',
-            'description': 'Оплата внескiв на утримання будинку, о/р ' + req.query.account,
+            'description': process.env["liqpay_description"] + ' ' + req.query.account,
             'order_id': 'order_id_1',
             'version': '3'
         };
