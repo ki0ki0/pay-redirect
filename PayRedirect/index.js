@@ -6,12 +6,13 @@ module.exports = async function (context, req) {
     if (req.query.account && req.query.amount) {
         var liqpay = new LiqPay(process.env["liqpay_public_key"], process.env["liqpay_private_key"]);
         const params = {
-            'action': 'pay',
+            'action': 'paydonate',
             'amount': req.query.amount,
             'currency': 'UAH',
             'description': process.env["liqpay_description"] + ' ' + req.query.account,
             'order_id': 'order_id_1',
-            'version': '3'
+            'version': '3',
+            'result_url': process.env["liqpay_result_url"]
         };
         var signature = liqpay.cnb_signature(params);
         
