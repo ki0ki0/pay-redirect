@@ -14,7 +14,7 @@ module.exports = async function (context, req) {
     if (req.query.pay && req.query.account && req.query.amount && req.query.period) {
         switch (req.query.pay)
         {
-            case "liq":
+            case "liqpay":
                 payLiq(req, client, context);
                 break;
             case "p24":
