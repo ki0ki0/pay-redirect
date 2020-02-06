@@ -45,7 +45,7 @@ function payLiq(req, client, context) {
     var description = util.format(process.env["liqpay_description"], req.query.period, req.query.account);
     const params = {
         'action': 'paydonate',
-        'amount': parseFloat(req.query.amount),
+        'amount': parseFloat(req.query.amount)*1.01,
         'currency': 'UAH',
         'description': description,
         'order_id': 'order_id_1',
